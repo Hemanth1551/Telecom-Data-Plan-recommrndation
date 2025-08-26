@@ -1,0 +1,11 @@
+customer_id,name,age,monthly_usage_gb,monthly_calls_min,monthly_sms,current_plan,data_limit_gb,call_limit_min,sms_limit,monthly_bill
+C001,Rahul,25,12,250,100,Plan_A,15,300,200,399
+C002,Anita,40,25,400,50,Plan_B,30,500,100,699
+C003,Vikram,32,8,100,30,Plan_C,10,200,50,299
+C004,Sneha,28,35,500,150,Plan_B,30,500,100,699
+C005,Prakash,50,5,80,20,Plan_C,10,200,50,299
+C006,Kavya,22,18,300,120,Plan_A,15,300,200,399
+C007,Ramesh,45,50,600,90,Plan_D,60,800,150,999
+C008,Meena,30,28,350,200,Plan_B,30,500,100,699
+C009,Arjun,27,7,150,60,Plan_C,10,200,50,299
+C010,Divya,35,40,700,250,Plan_D,60,800,150,999
