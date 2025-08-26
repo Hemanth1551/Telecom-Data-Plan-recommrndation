@@ -7,19 +7,38 @@ import '../../app.css'
 function Login() {
 
 
-    const [forData, setformData] = useState({
+    const [formData, setformData] = useState({
         email : "",
         password : ""
     }) 
 
     const Change = (e) => {
-        setformData({...forData, [e.target.name] : e.target.value})
+        setformData({...formData, [e.target.name] : e.target.value})
     }
 
-    const formSubmit = (e) => {
+    const formSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(forData);
+        console.log(formData);
+
+        try{
+            const res = await fetch("http://localhost:3000/userlogin",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+            const data = await res.json();
+            console.log(data);
+            if(res.ok){
+                alert("login done")
+            }else{
+                alert("login faild");
+            }
+        }catch(err){
+            console.log("error login...!", err);
+        }
     }
 
 

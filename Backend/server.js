@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');   // <-- import cors
 const app = express();
 const User = require('./model/user');
+const bcrypt = require("bcryptjs");
+
 
 app.use(express.json());
 
@@ -39,5 +41,28 @@ app.post('/users', async (req, res) => {
     res.status(201).json({ message: 'User created successfully', user });
   } catch (err) {
     res.status(400).json({ error: err.message });
+  }
+});
+
+app.post('/userlogin', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // 1. Find user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+
+    // 2. Compare password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // 3. Success
+    res.status(200).json({ message: "Logged in successfully", user });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
